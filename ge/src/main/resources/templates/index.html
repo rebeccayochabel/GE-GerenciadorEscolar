@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Início - GE</title>
+
+    <!-- Fontes -->
+
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <!-- Open sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link do bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Link pro arquivo css -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Mais scripts do bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Font awesome: um conjunto de ferramentas de fontes e ícones com base em CSS e LESS -->
+    <script src="https://kit.fontawesome.com/3d7e551cc1.js" crossorigin="anonymous"></script>
+
+    <!-- Parallax: efeito -->
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
+    <!-- Adicionando a biblioteca jQuery Mask ao projeto: ela preenche os símbolos em determinados dados,como os do cpf, rg e data de nascimento-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+</head>
+
+<body> 
+    
+    <!-- Cabeçalho -->
+    <header>
+
+      <!-- Navbar do bootstrap-->
+      <nav class="navbar navbar-regulared-lg navbar-light" style="background-color: #E1F1FF;">
+
+        <!-- Logo/Nome -->
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img src="/img/img-logo.png" alt="logo" id="logo" width="180" height="100">
+            Gerenciador Escolar - GE
+          </a>
+
+          <!-- Btn de navegação quando a tela é minimizada -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- opções do "menu" com o link -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align: center;" id="opcoes">
+              
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Início</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Entrar</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDocs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Documentos</a>
+                
+                <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownDocs">
+                  <li>
+                    <a class="dropdown-item" href="/pdf/Manual de Usuário.pdf">Manual de Usuário</a>
+                    <a class="dropdown-item" href="/pdf/Manual de Instalação.pdf">Manual de Instalação</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/ajuda">Ajuda</a>
+              </li>   
+                            
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <p><br><br></p>
+
+  <!-- Carousel -->
+  <section>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+      <div class="carousel-indicators">
+
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+      </div>
+
+      <!-- Banner 1   -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/img/img-banner01.png" class="d-block w-100"  alt="GE">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="text-dark">GE - Software destinado para o gerenciamento escolar.</h5>
+          </div>
+        </div>
+
+        <!-- Banner 2-->
+        <div class="carousel-item">
+          <img src="/img/img-banner02.png" class="d-block w-100" alt="Sistema ideal">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="text-dark">Nosso sistema é o ideal para fornecer auxílio perante os importantes dados de um instituição.</h5>
+          </div>
+        </div>
+
+        <!-- Banner 3-->
+        <div class="carousel-item">
+          <img src="/img/img-banner03.png" class="d-block w-100" alt="Conectados">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="text-dark">Online somos conectados.</h5>
+          </div>
+        </div>
+
+      </div>
+
+      <!--Banner anterior -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+
+      <!-- Próximo banner -->
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+
+    </div>
+
+  </section>
+
+  <p><br></p>
+
+  <!-- Cards - L1-->
+  <section class="container flex">
+
+    <div class="card-group">
+
+      <!-- Sobre nós -->
+      <div class="card">
+
+        <img src="/img/img-logof.png" class="card-img-top" alt="Logo">
+
+        <div class="card-body">
+          <h5 class="card-title">Sobre nós</h5>
+          <p class="card-text">Essa aplicaçãp web foi desenvolvida por 4 alunos finalistas do Ensino Técnico Integrado em Informática do IFAM/CMC.</p>
+          <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-sobre-nos">Saiba mais</a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modal-sobre-nos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              
+            <div class="modal-dialog">
+              
+              <div class="modal-content">
+                
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Sobre nós</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                  <h5>Estudantes do Instituto Federal de Educação, Ciência e Tecnologia do Amazonas/Campus Manaus-Centro:</h5>
+                  <p></p>
+                  <p> - Flávia de Araújo Rodrigues, finalista do curso integrado em informática;</p>
+                  <p> - Josué Castro Viana, finalista do curso integrado em informática;</p>
+                  <p> - Rebecca Yochabel de Oliveira Correia, finalista do curso integrado em informática;</p>
+                  <p> - Samuel da Silva Gomes, finalista do curso integrado em informática.</p>
+
+                  <p></p>
+
+                  <h5>Discentes do IFAM/CMC</h5>
+                  <p></p>
+                  <p> - Emmerson Santa Rita da Silva, mestre em Engenharia Elétrica e Informática Industrial pela UTFPR - Universidade Tecnológica Federal do Paraná;</p>
+                  <p> - Márcia da Costa Pimenta, mestre em Informática pela UFAM - Universidade Federal do Amazonas. </p>
+                </div>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Card - Pq usar o GE? -->
+      <div class="card">
+
+        <img src="/img/img-organizacao.png" class="card-img-top" alt="Organização">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Por que usar o GE?</h5>
+          <p class="card-text">Nossa aplicação fornece maior comorbidade e segurança na manipulação de dados importantes dos componentes da instituição.</p>
+
+        </div>
+
+      </div>
+
+      <!-- Card - Já tem conta aqui? -->
+      <div class="card">
+
+        <img src="/img/img-bemvindo.png" class="card-img-top" alt="Bem-vindo(a)">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Já tem conta aqui?</h5>
+          <p class="card-text">Seja bem-vindo(a) de volta! <br> Clique no botão abaixo e continue desfrutando de nossos serviços em sua escola.</p>
+          <a href="/login" class="btn btn-primary">Entre aqui</a>
+
+        </div>
+        
+      </div>
+
+      <!-- Card - Está com dúvidas? -->
+      <div class="card">
+
+        <img src="/img/img-duvidas.png" class="card-img-top" alt="Dúvidas">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Está com dúvida?</h5>
+          <p class="card-text">Caso tenha alguma dúvida sobre essa aplicação, clique no botão abaixo para ver as perguntas frequentes sobre o software, os funcionalidades e etc. </p>
+          <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-perguntas-frequentes">Perguntas frequentes</a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modal-perguntas-frequentes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              
+            <div class="modal-dialog">
+              
+              <div class="modal-content">
+                
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Perguntas frequentes</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                  <h5>Quais as funcionalidades da aplicação?</h5>
+                  <p></p>
+                  <b>Cadastro: </b>
+                  <p>de pessoal - servidores, professores e alunos; </p>
+                  <p>de atividades;</p>
+                  <p>de notícias: eventos, cursos, vagas de estágio e etc; </p>
+                  <p>de jogos: modalidade, horário e data do jogo.</p>
+
+                  <b>Listagem:</b>
+                  <p>O retorno de todos os cadastros poderão ser acessados.</p>
+
+                  <b>Alteração:</b>
+                  <p>A alteração de todos os cadastros poderão ser realizadas.</p>
+
+                  <b>Exclusão:</b>
+                  <p>A exclusão de determinado cadastro poderá ser realizadas.</p>
+
+                  <h5>Quais ferramentas utilizadas para criar esse site?</h5>
+                  <p></p>
+                  <p> <b>Firebase: </b> plataforma desenvolvida pelo Google para a criação de aplicativos móveis e da web.</p>
+                  <p> <b>Realtime Database - Firebase: </b>banco de dados NoSQL hospedado na nuvem. Com ele, é possível armazenar e sincronizar dados entre os os usuários em tempo real.</p>
+                  <p> <b>Spring boot: </b> framework Java open source que tem como objetivo facilitar esse processo em aplicações Java. Consequentemente, ele traz mais agilidade para o processo de desenvolvimento, uma vez que devs conseguem reduzir o tempo gasto com as configurações iniciais.</p>
+                  <p> <b>Bootstrap: </b> framework web com código-fonte aberto para desenvolvimento de componentes de interface e front-end para sites e aplicações web usando HTML, CSS e JavaScript, baseado em modelos de design para a tipografia, melhorando a experiência do usuário em um site amigável e responsivo.</p>
+
+                  <p></p>
+
+                  <h5>Qual o software/IDE usada?</h5>
+                  <p></p>
+                  <p> <b>Visual Studio Code: </b> editor de código-fonte desenvolvido pela Microsoft para Windows, Linux e macOS. Ele inclui suporte para depuração, controle de versionamento Git incorporado, realce de sintaxe, complementação inteligente de código, snippets e refatoração de código.</p>
+                  <p> <b>Spring Tools Suite: </b> ambiente de desenvolvimento baseado em Eclipse que é personalizado para desenvolvimento de aplicações Spring. </p>
+                </div>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>                    
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+          
+        </div>
+        
+      </div>
+
+    </div>
+
+  </section>
+  
+  <p></p>
+
+  <!-- Cards - L2-->
+  <section class="container flex">
+
+    <div class="card-group">
+
+      <!-- Card - Manual de usuário -->
+      <div class="card">
+
+        <img src="/img/img-manual-usuario.png" class="card-img-top" alt="Manual de Usuário">
+
+        <div class="card-body">
+          <h5 class="card-title">Manual de Usuário</h5>
+          <p class="card-text">Clicando no botão abaixo, será possível acessar o pdf do Manual de Usuário.</p>
+          <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-manual-usuario">Manual de Usuário</a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modal-manual-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            
+            <div class="modal-dialog">
+              
+              <div class="modal-content">
+                
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Manual de Usuário</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+
+                  <h5>O que é?</h5>
+                  <p></p>
+                  <p><b>Manual de Usuário</b> é um documento que tem por objetivo principal ajudar os utilizadores a entender como um produto funciona e como utilizá-lo.</p>
+
+                  <h5>Manual do usuário completo do GE: </h5>
+                  <object data="data/test.pdf" type="application/pdf" width="300" height="200">
+                    <a href="/pdf/Manual de Usuário.pdf">Manual de Usuário - GE</a>
+                  </object>
+
+                </div>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Termos e condições de uso -->
+      <div class="card">
+
+        <img src="/img/img-manual-instalacao.png" class="card-img-top" alt="Termos">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Manual de instalação</h5>
+          <p class="card-text">Clicando no botão abaixo, será possível acessar o pdf do Manual.</p>
+          <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-termos">Manual de instalação</a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modal-termos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            
+            <div class="modal-dialog">
+              
+              <div class="modal-content">
+                
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Manual de instalação</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                  <h5>O que é?</h5>
+                  <p></p>
+                  <p>Em linguagem simples e acessível, essse manual traz informações sobre os requisitos necessários para que o sistema funcione de maneira correta no dispositivo do usuário.</p>
+                  <p></p>
+
+                  <h5>Manual de instalação</h5>
+                  <object data="data/test.pdf" type="application/pdf" width="300" height="200">
+                    <a href="/pdf/Manual de Instalação.pdf">Manual de instalação - GE</a>
+                  </object>
+
+                </div>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
+                </div>
+
+              </div>
+
+            </div>
+          
+        </div>
+        
+      </div>
+
+    </div>
+
+  </section>
+
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+
+  <footer style="background-color: #e1f1ff;">  
+    <!-- Copyright -->
+    <div class="text-left p-3">
+      © 2021 Copyright: Flávia, Josué, Rebecca e Samuel - IINF3A
+      <a class="float-end" href="#">Back to top</a>
+    </div>
+
+  </footer> 
+
+</body>
+
+</html>

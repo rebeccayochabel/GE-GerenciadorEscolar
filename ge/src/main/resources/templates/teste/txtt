@@ -1,0 +1,58 @@
+<section class="container center">
+
+    <div class='row'>
+
+      <div class='col-3'>
+
+        <div class="card" style="width: 20rem;">
+
+          <img src="img-manual.png" class="card-img-top" alt="manual">
+
+          <div class="card-body">
+            <h5 class="card-title">Manual do usuário</h5>
+            <p class="card-text">Clicando no botão abaixo, será possível acessar o Manual do Usuário em pdf.</p>
+            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-manual-usuario">Clique aqui!</a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal-manual-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              
+              <div class="modal-dialog">
+                
+                <div class="modal-content">
+                  
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Manual de Usuário</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  
+                  <div class="modal-body">
+                    <h5>O que é?</h5>
+                    <p></p>
+                    <p><b>Manual de Usuário</b> é um documento que tem por objetivo principal ajudar os utilizadores a entender como um produto funciona e como utilizá-lo.</p>
+
+                    <h5>Manual do usuário completo: </h5>
+                    <object data="data/test.pdf" type="application/pdf" width="300" height="200">
+                      <a href="Manual de Usuário.pdf">Manual de Usuário - GE</a>
+                    </object>
+                    
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+  
+      </div>
+
+      
+
+    </div>
+
+  </section>

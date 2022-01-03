@@ -1,0 +1,42 @@
+<div class="card">
+
+        <h5 class="card-header h3 text-center">Excluir aluno</h5>
+
+        <div class="card-body">
+          <p></p>
+          
+          <p class="h4"> Nome: <span class="text-danger h5" th:text= "${aluno.nome}"></span> </p>
+          <p class="h4"> CPF: <span class="text-danger h5" th:text= "${aluno.cpf}"></span> </p>
+          <p class="h4"> RG: <span class="text-danger h5" th:text= "${aluno.rg}"></span> </p>
+          <p class="h4"> Data de Nascimento: <span class="text-danger h5" th:text= "${aluno.dtNasc}"></span> </p>
+          <p class="h4"> Turma: <span class="text-danger h5" th:text= "${aluno.turma}"></span> </p>
+
+          <p></p>
+
+          <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-excluir">Excluir!</a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modal-excluir" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Excluir aluno</h5>
+                  </div>
+
+                  <div class="modal-body">
+                    <h6><img src="img-aviso.png"  width="60" height="60"alt=""> Você realmente deseja excluir essa atividade?</h6>
+                  </div>
+
+                  <div class="modal-footer">
+                      <a th:href="@{/deletarAluno(id=${aluno.id})}"> <button type="button" class="btn btn-primary" id="button-excluirmodal">Sim, desejo excluir!</button></a>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar!</button>
+                  </div>
+                </div>
+
+            </div>
+          
+        </div> 
+
+</div>

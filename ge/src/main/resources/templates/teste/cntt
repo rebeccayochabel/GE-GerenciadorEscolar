@@ -1,0 +1,27 @@
+<div class="card">
+
+    <p class="fs-4 text-center">Alunos</p>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th class="card-header">Nome</th>
+                    <th class="card-header">Email</th>
+                    <th class="card-header">Telefone</th>
+                    <th class="card-header">Turma</th>
+                </tr>
+
+                <tr class="card-headeres" th:each="aluno : ${alunosList}"> <!-- For em html -->
+
+                	<th><h6><span th:text="${aluno.nome}"> </span></h6></th>
+                    <th><h6><span th:text="${aluno.email}"> </span></h6></th>
+                    <th><h6><span th:text="${aluno.tel}"> </span></h6></th>
+                    <th><h6><span th:text="${aluno.turma}"> </span></h6></th>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p><br></p>
+    <p><br></p>

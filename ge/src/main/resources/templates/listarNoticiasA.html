@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Listar notícias - Aluno</title>
+
+    <!-- Fontes -->
+
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <!-- Open sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link do bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Link pro arquivo css -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Mais scripts do bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Font awesome: um conjunto de ferramentas de fontes e ícones com base em CSS e LESS -->
+    <script src="https://kit.fontawesome.com/3d7e551cc1.js" crossorigin="anonymous"></script>
+
+    <!-- Parallax: efeito -->
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
+    <!-- Adicionando a biblioteca jQuery Mask ao projeto: ela preenche os símbolos em determinados dados,como os do cpf, rg e data de nascimento-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+</head>
+
+<body> 
+    
+    <!-- Cabeçalho -->
+    <header>
+
+        <!-- Navbar do bootstrap-->
+        <nav class="navbar navbar-regulared-lg navbar-light" style="background-color: #E1F1FF;">
+  
+          <!-- Logo/Nome -->
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+              <img src="/img/img-logo.png" alt="logo" id="logo" width="180" height="100">
+              Gerenciador Escolar - GE
+            </a>
+  
+            <!-- Btn de navegação quando a tela é minimizada -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+  
+            <!-- -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+              <!-- opções do "menu" com o link -->
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align: center;" id="opcoes">
+                
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/prinAluno">Menu principal</a>
+                </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="/meusDados">Meus dados</a>
+                </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="/listarAtividadesAluno">Atividades</a>
+                </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="/listarAulasAluno">Aulas</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/listarJogosAluno">Jogos</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/listarNoticiasAluno">Notícias</a>
+                </li>
+  
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownContatos" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contatos</a>
+                    
+                    <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownContatos">
+                      <li>
+                        <a class="dropdown-item" href="/contatosProfessores">Professores</a>
+                        <a class="dropdown-item" href="/contatosServidores">Servidores</a>
+    
+                      </li>
+                    </ul>
+                  </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="/ajuda">Ajuda</a>
+                </li>      
+                
+                <li class="nav-item">
+                  <form name="LogoutForm" th:action="@{/logout}" method="post">
+                    <!-- 
+                    <label>
+                      Olá, <span sec:authentication="name">usuário</span>
+                    </label>
+                    -->
+                    <input type="submit" class="btn btn-outline-danger" value="Sair"/>
+                  </form>
+                </li> 
+                
+              </ul>
+  
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </nav>
+  
+    </header>
+
+  <p><br><br></p>
+
+  <section class="container flex">
+
+    <p class="fs-4 text-center"> Listagem - Notícias</p>
+
+    <p><br></p>
+
+    <div class="card">
+        <table>
+            <tbody>
+                <tr>
+                    <th class="card-header">Assunto</th>
+                    <th class="card-header">Área</th>
+                    <th class="card-header">Orientações</th>
+                    <th class="card-header">Data</th>
+                    <th class="card-header">Horário</th>
+                </tr>
+
+                <tr class="card-headeres" th:each="noticia : ${noticiaList}"> <!-- For em html -->
+                	<th><h6><span th:text="${noticia.assunto}"></span></h6></th>
+                    <th><h6><span th:text="${noticia.area}"></span></h6></th>
+                    <th><h6><span th:text="${noticia.orientacoes}"></span></h6></th>
+                    <th><h6><span th:text="${noticia.dtPost}"></span></h6></th>
+                    <th><h6><span th:text="${noticia.hrPost}"></span></h6></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        
+  </section>
+  
+
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+
+  <footer class="text-center" style="background-color: #e1f1ff;">  
+    <!-- Copyright -->
+    <div class="text-center p-3">
+      © 2021 Copyright: Flávia, Josué, Rebecca e Samuel - IINF3A
+    </div>
+    <!-- Copyright -->
+  </footer> 
+
+</body>
+
+</html>

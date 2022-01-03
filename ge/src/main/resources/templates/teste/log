@@ -1,0 +1,37 @@
+var usuario;
+                var senha;
+
+                if (usuario == "rebeccayochabel" && senha == "rebeccay"){
+                  window.location.href = "/prinServ"
+                } else
+                if (usuario == "flaviaaraujo" && senha == "flaviaar"){
+                  window.location.href = "/prinAluno"
+                } else
+                if (usuario == "josuecastro" && senha == "josuecastrov"){
+                  window.location.href = "/prinProf"
+                } else {
+                  window.location.href = "/login"
+                }
+
+
+
+                var botaoAdicionar = document.querySelector("#logar");
+
+                botaoAdicionar.addEventListener("click", function(event) {
+
+                  var campoUsuario = document.getElementById('usuario').value;
+                  var campoSenha = document.getElementById('senha').value;
+                          
+                  if (campoUsuario == "rebeccayochabel" && campoSenha == "rebeccay") {
+                    window.location.href= "prinServ.html";
+                  } else
+                  if (campoUsuario == "flaviaaraujo" && campoSenha == "flaviaar"){
+                  window.location.href = "/prinAluno"
+                  } else
+                  if (campoUsuario == "josuecastro" && campoSenha == "josuecastrov"){
+                    window.location.href = "/prinProf"
+                  } else {
+                    alert("Dados incorretos! Por favor, tente novamente.")
+                  }
+                  
+                }

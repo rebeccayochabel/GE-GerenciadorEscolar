@@ -1,0 +1,77 @@
+<section class="container flex">
+
+    <button class="btn btn-info btn-lg d-grid gap-2 col-3 mx-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+      Informações iniciais
+    </button>
+
+    <div class="offcanvas offcanvas-start w-50 p-3" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+
+      <div class="offcanvas-header">
+
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Bem-vindo, aluno(a)!</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+      </div>
+
+      <div class="offcanvas-body">
+        <div>
+          <p>Nossa aplicação deseja trazer mais facilidade na organização de sua vida acadêmica.</p> 
+          <p>Por isso, oferecemos recursos simples, mas de grande utilidade para auxília-lo!</p>
+        </div>
+
+        <h5> <br> Alguns informativos gerais sobre as funções disponíveis para você:</h5>
+
+        <p><br></p>        
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="eu-tab" data-bs-toggle="tab" data-bs-target="#eu" type="button" role="tab" aria-controls="eu" aria-selected="true">Seus dados</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="atividades-tab" data-bs-toggle="tab" data-bs-target="#atividades" type="button" role="tab" aria-controls="atividades" aria-selected="false">Atividades</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="aulas-tab" data-bs-toggle="tab" data-bs-target="#aulas" type="button" role="tab" aria-controls="aulas" aria-selected="false">Aulas</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contatos-tab" data-bs-toggle="tab" data-bs-target="#contatos" type="button" role="tab" aria-controls="contatos" aria-selected="false">Contatos</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="ajuda-tab" data-bs-toggle="tab" data-bs-target="#ajuda" type="button" role="tab" aria-controls="ajuda" aria-selected="false">Ajuda</button>
+          </li>
+
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="eu" role="tabpanel" aria-labelledby="eu-tab">
+            <p> <br> Na seção de <i>Meus dados</i> todas as informações sobre você estará disponível para visualização.</p>
+          </div>
+
+          <div class="tab-pane" id="atividades" role="tabpanel" aria-labelledby="atividades-tab">
+            <p> <br> Procure, em seu menu, o item <i>Atividades</i> para verificar todas as atividades pendentes e entregues.</p>
+          </div>
+
+          <div class="tab-pane fade" id="aulas" role="tabpanel" aria-labelledby="aulas-tab">
+            <p> <br> No item <i>Aulas</i> você receberá um relatório de todas aulas, horários e seus respectivos professores.</p>
+          </div>
+
+          <div class="tab-pane fade" id="contatos" role="tabpanel" aria-labelledby="contatos-tab">
+            <p> <br> Em <i>Contatos</i>, todos os email e números de telefone de membros da instituição ficarão disponíveis para acesso.</p>
+          </div>
+
+          <div class="tab-pane fade" id="ajuda" role="tabpanel" aria-labelledby="ajuda-tab">
+            <p> <br> A opção de <i>Ajuda</i> irá mostrar uma série de dúvidas frequentes. Além disso, você poderá fazer uma solicitação para a correção de algum problema, seja relacionado ao sistema ou aos seus dados.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>

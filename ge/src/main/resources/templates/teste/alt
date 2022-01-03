@@ -1,0 +1,25 @@
+<section class="container flex">
+
+    <div class="card w-50">
+
+        <h5 class="card-header h3 text-center">Alterar turma</h5>
+        
+        <div class="card-body">
+            <p></p>
+
+            <form th:action="@{/altTurma(id=${turma.id})}"  th:object="${turma}" method="Post">
+
+            
+              <p class="h4"> Nome: <input type="text" th:field="${turma.nome}" th:value="${turma.nome}" nome="nome" > </p>
+              <p class="h4"> Email: <input type="text" th:field="${turma.email}" th:value="${turma.email}" nome="email" > </p>
+              <p class="h4"> Turno:  <input type="text" th:field="${turma.turno}" th:value="${turma.turno}" nome="turno" > </p>
+
+              <button type="submit" class="btn btn-cadastrar" id="button-cadastrar">Atualizar</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+  </section>

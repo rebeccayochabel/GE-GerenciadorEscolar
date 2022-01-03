@@ -1,0 +1,48 @@
+<div class='col-3'>
+
+        <div class="card" style="width: 20rem;">
+
+          <img src="img-politica-privacidade.png" class="card-img-top" alt="manual">
+
+          <div class="card-body">
+            <h5 class="card-title">Política de Privacidade</h5>
+            <p class="card-text">Clicando no botão abaixo, será possível acessar o pdf da Política de Privacidade.</p>
+            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-politica-privacidade">Clique aqui!</a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal-politica-privacidade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              
+              <div class="modal-dialog">
+                
+                <div class="modal-content">
+                  
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Política de Privacidade</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  
+                  <div class="modal-body">
+                    <h5>O que é?</h5>
+                    <p></p>
+                    <p><b>Política de Privacidade</b> é um documento pelo qual o responsável por manter um site ou aplicativo explica a todos os interessados a forma como os dados pessoais dos usuários e visitante da plataforma serão tratados.</p>
+
+                    <h5>Política de Privacidade completa: </h5>
+                    <object data="data/test.pdf" type="application/pdf" width="300" height="200">
+                      <a href="Política de Privacidade.pdf">Política de Privacidade - GE</a>
+                    </object>
+                    
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+  
+      </div>

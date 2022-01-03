@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Login - GE</title>
+
+    <!-- Fontes -->
+
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <!-- Open sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link do bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Link pro arquivo css -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Mais scripts do bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Font awesome: um conjunto de ferramentas de fontes e ícones com base em CSS e LESS -->
+    <script src="https://kit.fontawesome.com/3d7e551cc1.js" crossorigin="anonymous"></script>
+
+    <!-- Parallax: efeito -->
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
+    <!-- Adicionando a biblioteca jQuery Mask ao projeto: ela preenche os símbolos em determinados dados,como os do cpf, rg e data de nascimento-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <!-- Style em css -->
+    <style>
+
+      h11{
+        color: #ff0000;
+      }
+
+    </style>
+    
+</head>
+
+<body>
+    
+    <!-- Cabeçalho -->
+    <header>
+
+      <!-- Navbar do bootstrap-->
+      <nav class="navbar navbar-regulared-lg navbar-light" style="background-color: #E1F1FF;">
+
+        <!-- Logo/Nome -->
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img src="/img/img-logo.png" alt="logo" id="logo" width="180" height="100">
+            Gerenciador Escolar - GE
+          </a>
+
+          <!-- Btn de navegação quando a tela é minimizada -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- opções do "menu" com o link -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align: center;" id="opcoes">
+              
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Início</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Entrar</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDocs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Documentos</a>
+                
+                <ul class="dropdown-menu text-center" style="background-color: #e1f1ff;" aria-labelledby="navbarDropdownDocs">
+                  <li>
+                    <a class="dropdown-item" href="/pdf/Manual de Usuário.pdf">Manual de Usuário</a>
+                    <a class="dropdown-item" href="/pdf/Política de Privacidade.pdf">Política de privacidade</a>
+                    <a class="dropdown-item" href="/pdf/Termos e condições gerais de uso.pdf">Termos e condições gerais de uso</a>
+                  </li>
+                </ul>
+              </li> 
+                            
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <p><br><br></p>
+
+  <section class="container flex col-md-3 shadow p-3 mb-5 bg-light rounded">
+
+    <div class="justify-content-center ">
+
+        <h3 class="text-center">Login - GE</h3>
+              <p class="fs-4 text-center">Bem-vindo de volta!</p>
+
+        <!-- Nome input -->
+        <div class="col-mb-4">
+            <label class="form-label col-md-12" for="nome">Usuário
+              <input id="usuario" type="text" class="form-control form-control-lg" placeholder="Usuário" maxlength="45" required/>
+            </label>
+          </div>
+
+          <!-- Senha input -->
+          <div class="col-mb-4">
+            <label class="form-label col-md-12" for="senha">Senha
+              <input id="senha" type="password" class="form-control form-control-lg text-lowercase" placeholder="Senha" maxlength="15" required/>
+            </label>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button id="logar" type="button" value="Entrar" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Entrar</button>
+          </div>
+
+
+    </div>
+
+    <script>
+        var botaoAdicionar = document.querySelector("#logar");
+
+        botaoAdicionar.addEventListener("click", function(event) {
+
+            var campoUsuario = document.getElementById('usuario').value;
+            var campoSenha = document.getElementById('senha').value;
+                    
+            if (campoUsuario == "rebeccayochabel" && campoSenha == "rebeccay") {
+                window.location.href= "/prinServ";
+            } else
+            if (campoUsuario == "flaviaaraujo" && campoSenha == "flaviaar"){
+                    window.location.href = "/prinAluno"
+            } else
+            if (campoUsuario == "josuecastro" && campoSenha == "josuecastrov"){
+                window.location.href = "/prinProf"
+            } else {
+                alert("Dados incorretos! Por favor, tente novamente.")
+            }
+
+        });
+    </script>
+  </section>
+
+</body>
+</html>

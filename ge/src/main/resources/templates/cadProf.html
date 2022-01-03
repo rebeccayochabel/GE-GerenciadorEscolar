@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Cadastrar professor - GE</title>
+
+    <!-- Fontes -->
+
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <!-- Open sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link do bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Link pro arquivo css -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Mais scripts do bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Font awesome: um conjunto de ferramentas de fontes e ícones com base em CSS e LESS -->
+    <script src="https://kit.fontawesome.com/3d7e551cc1.js" crossorigin="anonymous"></script>
+
+    <!-- Parallax: efeito -->
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
+    <!-- Adicionando a biblioteca jQuery Mask ao projeto: ela preenche os símbolos em determinados dados,como os do cpf, rg e data de nascimento-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <!-- Pesquisar cep automaticamente -->
+    <script>
+    
+      function limpa_formulário_cep() {
+              //Limpa valores do formulário de cep
+              document.getElementById('rua').value=("");
+              document.getElementById('bairro').value=("");
+              document.getElementById('cidade').value=("");
+              document.getElementById('uf').value=("");
+      } //end function
+  
+      function meu_callback(conteudo) {
+          if (!("erro" in conteudo)) {
+              //Atualiza os campos com os valores
+              document.getElementById('rua').value=(conteudo.logradouro);
+              document.getElementById('bairro').value=(conteudo.bairro);
+              document.getElementById('cidade').value=(conteudo.localidade);
+              document.getElementById('uf').value=(conteudo.uf);
+          } //end if.
+          else {
+              //CEP não encontrado
+              limpa_formulário_cep();
+              alert("CEP não encontrado.");
+          } //end else
+      } //end function
+          
+      function pesquisacep(valor) {
+  
+          //Nova variável "cep" somente com dígitos
+          var cep = valor.replace(/\D/g, '');
+  
+          //Verifica se campo cep possui valor informado
+          if (cep != "") {
+  
+              //Expressão regular para validar o CEP
+              var validacep = /^[0-9]{8}$/;
+  
+              //Valida o formato do CEP
+              if(validacep.test(cep)) {
+  
+                  //Preenche os campos com "..." enquanto consulta webservice
+                  document.getElementById('rua').value="...";
+                  document.getElementById('bairro').value="...";
+                  document.getElementById('cidade').value="...";
+                  document.getElementById('uf').value="...";
+  
+                  //Cria um elemento javascript
+                  var script = document.createElement('script');
+  
+                  //Sincroniza com o callback
+                  script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+  
+                  //Insere script no documento e carrega o conteúdo
+                  document.body.appendChild(script);
+  
+              } //end if
+              else {
+                  //cep é inválido.
+                  limpa_formulário_cep();
+                  alert("Formato de CEP inválido.");
+              }
+          } //end if
+          else {
+              //cep sem valor, limpa formulário
+              limpa_formulário_cep();
+          } //end else
+
+      } //end function
+  
+      </script>
+    
+    <!-- Style em css -->
+    <style>
+
+      h11{
+        color: red;
+      }
+
+    </style>
+    
+</head>
+
+<body>
+    
+    <!-- Cabeçalho -->
+    <header>
+
+      <!-- Navbar do bootstrap-->
+      <nav class="navbar navbar-regulared-lg navbar-light" style="background-color: #E1F1FF;">
+
+        <!-- Logo/Nome -->
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img src="/img/img-logo.png" alt="logo" id="logo" width="180" height="100">
+            Gerenciador Escolar - GE
+          </a>
+
+          <!-- Btn de navegação quando a tela é minimizada -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- opções do "menu" com o link -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align: center;" id="opcoes">
+              
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/prinServ">Menu principal</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Meus dados</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTurmas" role="button" data-bs-toggle="dropdown" aria-expanded="false">Turmas</a>
+
+                <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownTurmas">
+                  <li><a class="dropdown-item" href="/listarTurmas">Ver turmas</a></li>
+                  <li><a class="dropdown-item" href="/cadastrarTurma">Cadastrar turma</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAlunos" role="button" data-bs-toggle="dropdown" aria-expanded="false">Alunos</a>
+              
+                <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownAlunos">
+                  <li><a class="dropdown-item" href="/listarAlunos">Ver alunos</a></li>
+                  <li><a class="dropdown-item" href="/cadastrarAluno">Cadastrar aluno</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMembros" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servidores</a>
+                
+                <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownMembros">
+                  <li><a class="dropdown-item" href="/listarServs">Ver servidores</a></li>
+                  <li><a class="dropdown-item" href="/cadastrarServidor">Cadastrar servidor</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Professores</a>
+                
+                <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownProfs">
+                  <li><a class="dropdown-item" href="/listarProfs">Ver professores</a></li>
+                  <li><a class="dropdown-item" href="/cadastrarProfessor">Cadastrar professores</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNoticias" role="button" data-bs-toggle="dropdown" aria-expanded="false">Notícias</a>
+                
+                <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownNoticias">
+                  <li><a class="dropdown-item" href="/listarNoticias">Ver notícias</a></li>
+                  <li><a class="dropdown-item" href="/cadastrarNoticia">Cadastrar notícia</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownjogos" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jogos</a>
+                
+                <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownjogos">
+                  <li><a class="dropdown-item" href="/listarJogos">Ver jogos</a></li>
+                  <li><a class="dropdown-item" href="/cadastrarJogo">Cadastrar jogo</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownContatos" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contatos</a>
+                
+                <ul class="dropdown-menu text-center" style="background-color: #E1F1FF;" aria-labelledby="navbarDropdownContatos">
+                  <li>
+                    <a class="dropdown-item" href="/contatosAlunos">Alunos</a>
+                    <a class="dropdown-item" href="/contatosProfessores">Professores</a>
+                    <a class="dropdown-item" href="/contatosServidores">Servidores</a>
+
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Ajuda</a>
+              </li>  
+              
+              <li class="nav-item">
+                <form name="LogoutForm" th:action="@{/logout}" method="post">
+                  <!-- 
+                  <label>
+                    Olá, <span sec:authentication="name">usuário</span>
+                  </label>
+                  -->
+                  <input type="submit" class="btn btn-outline-danger" value="Sair"/>
+                </form>
+              </li> 
+              
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <p><br><br></p>
+
+    <section class="container flex col-md-6 shadow p-3 mb-5 bg-light rounded"> 
+
+      <div class="justify-content-center ">
+  
+            <form class="row g-4" th:action="@{/profAdd}" th:object="${prof}" method="post">
+  
+              <!-- p para desencostar da navbar-->
+              <p></p>
+  
+              <h3>Cadastrar professor - GE</h3>
+              <p class="fs-4">Iremos pedir alguns dados do aluno para validar o cadastro do professor.</p>
+
+              <div class="container flex">
+                <span id="basic-addon1"> 
+                  <h5>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="60" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                    </svg>
+                    Dados pessoais do professor(a)
+                  </h5>
+                </span>
+              </div>
+
+              <!-- Nome input -->
+              <div class="col-mb-4">
+                <label class="form-label col-md-12" for="nome">Nome<h11> *</h11>
+                  <input type="text" th:field="*{nome}" id="nome" class="form-control form-control-lg text-capitalize" placeholder="Nome" maxlength="45" required/>
+                </label>
+              </div>
+
+              <!-- CPF/rg/sexo input -->
+              <div class="col-mb-4">
+                <label class="form-label col-md-4" for="cpf">CPF<h11> *</h11>
+                  <input type="text" th:field="*{cpf}" id="cpf" class="form-control form-control-lg" placeholder="Apenas números" onkeypress="$(this).mask('000.000.000-00')" required/>
+                </label>
+
+                <label class="form-label col-md-4" for="rg" style="margin-left: 27px;">RG<h11> *</h11>
+                  <input type="text" th:field="*{rg}" id="rg" class="form-control form-control-lg" placeholder="Apenas números" onkeypress="$(this).mask('0000000-0')" required/>
+                </label>
+
+                <label class="form-label col-md-3" for="sexo" style="margin-left: 27px;">Sexo<h11> *</h11>
+                  <select id="sexo" th:field="*{sexo}" class="form-control form-control-lg" required>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Outro">Outro</option>
+                  </select>
+                </label>
+
+              </div>
+
+              <!-- Email/tel input -->
+              <div class="col-mb-4">
+                <label class="form-label col-md-7" for="email">Email<h11> *</h11>
+                  <input type="email" th:field="*{email}" id="email" class="form-control form-control-lg text-lowercase" placeholder="Email" minlength="10" maxlength="45" required/>
+                </label>
+
+                <label class="form-label col-md-4" for="telefone" style="margin-left: 57px;">Telefone<h11> *</h11>
+                  <input type="text" th:field="*{tel}" id="telefone" class="form-control form-control-lg" placeholder="Apenas números" onkeypress="$(this).mask('(00) 00000-0000')" required/>
+                </label>
+
+              </div>
+
+              <!-- Dt nasc/turma input -->
+              <div class="col-mb-4">
+                <label class="form-label col-md-4" for="dtNasc">Data de nascimento<h11> *</h11>
+                  <input type="text" th:field="*{dtNasc}" id="dtNasc" class="form-control form-control-lg" placeholder="dd/mm/aaaa" onkeypress="$(this).mask('00/00/0000')" required/>
+                </label>
+
+                <label class="form-label col-md-3" for="formacao" style="margin-left: 25px;">Formação<h11> *</h11>
+                  <select id="formacao" th:field="*{formacao}" class="form-control form-control-lg" required>
+                    <option value="Graduado">Graduado</option>
+                    <option value="Pós-Graduado">Pós-Graduado</option>
+                    <option value="Mestrado">Mestrado</option>
+                  </select>
+                </label>
+
+                <label class="form-label col-md-4" for="materia" style="margin-left: 25px;">Matéria do professor(a)<h11> *</h11>
+                  <select id="materia" th:field="*{materia}" class="form-control form-control-lg" required>
+                    <option value="Língua Portuguesa">Lingua Portuguesa</option>
+                    <option value="Língua Inglesa">Lingua Inglesa</option>
+                    <option value="Língua Espanhola">Lingua Espanhola</option>
+                    <option value="Matemática">Matemática</option>
+                    <option value="História">História</option>
+                    <option value="Geografia">Geografia</option>
+                    <option value="Física">Física</option>
+                    <option value="Biologia">Biologia</option>
+                    <option value="Educação física">Educação física</option>
+                    <option value="Metodologia do estudo">Metodologia do estudo</option>
+                    <option value="Educação financeira">Educação financeira</option>
+                    <option value="Informática básica">Informática básica</option>
+                  </select>
+                </label>
+
+              </div>
+
+              <p><br></p>
+
+                <div class="container flex">
+                  <span id="basic-addon1"> 
+                    <h5>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="60" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                        <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                      </svg>
+                      Questões médicas do professor(a)
+                    </h5>
+                  </span>
+                </div>            
+
+                <!-- Sangue/com/qcom select -->
+                <div class="col-mb-4">
+                  <label class="form-label col-md-3" for="tipSang">Tipo sanguíneo?<h11> *</h11>
+                    <select id="tipSang" th:field="*{tpSangue}" class="form-control form-control-lg" required>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                      <option value="O+">O+</option>
+                      <option value="O">O</option>
+                    </select>
+                  </label>
+
+                  <label class="form-label col-md-3" for="comorbidade" style="margin-left: 27px;">Comorbidade?<h11> *</h11>
+                    <select id="comorbidade" th:field="*{comorbidade}" class="form-control form-control-lg" required>
+                      <option value="Sim">Sim</option>
+                      <option value="Não">Não</option>
+                    </select>
+                  </label>
+
+                  <label class="form-label col-md-5" for="qualCom" style="margin-left: 27px;">Qual comorbidade?
+                    <input type="text" th:field="*{qualCom}" id="qualCom" class="form-control form-control-lg" placeholder="Diabetes, hipertensão..." maxlength="15"/>
+                  </label>
+                  
+                </div>
+
+                <p><br></p>
+
+                <div class="container flex">
+                  <span id="basic-addon1"> 
+                    <h5>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="60" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+                        <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+                      </svg>
+                      Endereço do professor(a)
+                    </h5>
+                  </span>
+                </div>
+  
+                <!-- CEP/rua/num input -->
+                <div class="col-mb-4">
+                  <label class="form-label col-md-3" for="cep">CEP<h11> *</h11>
+                    <input type="text" th:field="*{cep}" id="cep" class="form-control form-control-lg" placeholder="Apenas números" onkeypress="$(this).mask('00000-000')" onblur="pesquisacep(this.value);" required/>
+                  </label>
+  
+                  <label class="form-label col-md-6" for="rua" style="margin-left: 27px;">Rua<h11> *</h11>
+                    <input type="text" th:field="*{rua}" id="rua" class="form-control form-control-lg text-capitalize" placeholder="Rua Feliciana Costa" maxlength="15" required/>
+                  </label>
+  
+                  <label class="form-label col-md-2" for="numero" style="margin-left: 27px;">Número da casa<h11> *</h11>
+                    <input type="text" th:field="*{numCs}" id="numero" class="form-control form-control-lg" placeholder="125A" maxlength="8" required/>
+                  </label>
+  
+                </div>
+  
+                <!-- Bairro/complemento input -->
+                <div class="col-mb-4">
+                  <label class="form-label col-md-5" for="bairro">Bairro<h11> *</h11>
+                    <input type="text" th:field="*{bairro}" id="bairro" class="form-control form-control-lg text-capitalize" placeholder="Nossa Senhora das Graças" maxlength="30" required/>
+                  </label>
+  
+                  <label class="form-label col-md-6" for="complemento" style="margin-left: 57px;">Complemento<h11> *</h11>
+                    <input type="text" th:field="*{complemento}" id="complemento" class="form-control form-control-lg text-capitalize" placeholder="Prox. ao lanche Vai Garotão" maxlength="30" required/>
+                  </label>
+  
+                </div>
+  
+                <!-- Cidade/estado input -->
+                <div class="col-mb-4">
+                  <label class="form-label col-md-5" for="cidade">Cidade<h11> *</h11>
+                    <input type="text" th:field="*{cidade}" id="cidade" class="form-control form-control-lg text-capitalize" placeholder="Manaus" maxlength="25" required/>
+                  </label>                
+                  
+                  <label class="form-label col-md-6" for="uf" style="margin-left: 57px;">Estado<h11> *</h11>
+                    <input type="text" th:field="*{uf}" id="uf" class="form-control form-control-lg" placeholder="AM" maxlength="2" style="text-transform: uppercase;" required/>
+                  </label>
+  
+                </div>
+
+                <div class="container flex">
+                  <span id="basic-addon1"> 
+                    <h5>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="60" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                      </svg>
+                      Certificação do professor
+                    </h5>
+                  </span>
+                </div>
+
+                <!-- Dt de certificacao do prof -->
+                <div class="col-mb-4">
+                  <label class="form-label col-md-4" for="dtCert">Data de certificação<h11> *</h11>
+                    <input type="text" id="dtCert" th:field="*{dtCert}" class="form-control form-control-lg" placeholder="dd/mm/aaaa" onkeypress="$(this).mask('00/00/0000')" required/>
+                  </label>
+                </div>
+
+                <div class="text-center text-lg-start mt-4 pt-2">
+                  <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Cadastrar Professor</button>
+
+                  <p class="small fw-bold mt-2 pt-1 mb-0">Deseja ver a lista de  professores da escola? <a href="/listarProfs"
+                    class="link-danger">Clique aqui</a>
+                    <p><br></p>
+                  </p>
+                </div>
+          
+            </form>
+  
+      </div>
+  
+    </section>
+
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+
+    <footer class="text-center" style="background-color: #e1f1ff;">  
+      <!-- Copyright -->
+      <div class="text-center p-3">
+        © 2021 Copyright: Flávia, Josuá, Rebecca e Samuel - IINF3A
+      </div>
+      <!-- Copyright -->
+    </footer> 
+
+</body>
+
+</html>
